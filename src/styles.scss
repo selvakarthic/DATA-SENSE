@@ -1,0 +1,21 @@
+
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    letter-spacing: 0.2px;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;  
+}
+
+:root {
+    --bg-color: linear-gradient(90deg, #FA8661 0%, #F95B5D 47%, #F72E59 100%); 
+    --orange-text : #F72E59;
+    --white-color : #ffffff;
+    --body-bg : #F2F4F7;
+}

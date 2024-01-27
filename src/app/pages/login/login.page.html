@@ -1,0 +1,32 @@
+<ion-content>
+  <div>
+    <h2>Login</h2>
+    <form [formGroup]="loginForm" (ngSubmit)="login()">
+      <div>
+        <label for="email">Email:</label>
+        <input type="email" id="email" formControlName="email" />
+        <app-form-errors
+          [submitted]="isFormSubmitted"
+          
+          class="valid-msg"
+          *ngIf="loginForm.controls['email'] && loginForm.controls['email'].errors && (isFormSubmitted||loginForm.controls['email'].touched)"
+          [formController]="loginForm.controls['email']"
+      >
+      </app-form-errors>
+      </div>
+      <div>
+        <label for="password">Password:</label>
+        <input type="password" id="password" formControlName="password" />
+        <app-form-errors
+          [submitted]="isFormSubmitted"
+          
+          class="valid-msg"
+          *ngIf="loginForm.controls['password'] && loginForm.controls['password'].errors && (isFormSubmitted||loginForm.controls['password'].touched)"
+          [formController]="loginForm.controls['password']">
+      </app-form-errors>
+      </div>
+      <button type="submit">Login</button>
+      <p (click)="navToForgotPassword()">Forgot Password?</p>
+    </form>
+  </div>
+</ion-content>

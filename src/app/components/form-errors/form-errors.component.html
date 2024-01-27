@@ -1,0 +1,68 @@
+<div class="form-con-errors" *ngIf="
+    formController&&((formController.dirty||formController.touched)||submitted)
+ ">
+ <div class="form-con-errors" *ngIf="formController && formController.errors">
+    <div class="hide-err" *ngIf="formController.errors.required; else maxlength">
+        This field is mandatory
+
+    </div>
+    <ng-template #maxlength>
+    <div class="hide-err" *ngIf="formController.errors.maxlength; else minlength">
+        <div class="red-text" *ngIf="customErrorMessage; else customMobileError">
+            {{customErrorMessage}}
+        </div>
+        
+        <ng-template #customMobileError>
+            <div class="red-text">
+                Please enter less than {{ formController.errors.maxlength.requiredLength}} characters
+            </div>
+        </ng-template>
+    </div>
+    </ng-template>
+    <ng-template #minlength>
+    <div class="hide-err" *ngIf="formController.errors.minlength; else email">
+        This field requires minimum {{ formController.errors.minlength.requiredLength}} characters
+
+    </div>
+</ng-template>
+<ng-template #email>
+    <div class="hide-err" *ngIf="formController.errors?.email; else onlyAlpha">
+        Please enter a valid email address
+
+    </div>
+</ng-template>
+<ng-template #onlyAlpha>
+    <div class="hide-err" *ngIf="formController.errors.onlyAlpha; else onlyNumber">
+        This field allows only alphabets
+    </div>
+</ng-template>
+<ng-template #onlyNumber>
+    <div class="hide-err" *ngIf="formController.errors.onlyNumber;else  password">
+        This field allows only numbers
+    </div>
+</ng-template>
+<ng-template #password>
+    <div class="hide-err" *ngIf="formController.errors.password;else pincode">
+       Password should match the below guidelines 
+       <p>
+           1. 4-16 characters
+       </p>
+       <p>
+           2. 1 Special character , 1 Numeric , 1 Capital and 1 Small Letter
+       </p>
+      </div>
+   </ng-template>
+   <ng-template #pincode>
+    <div class="hide-err" *ngIf="formController.errors.pincode;else  userName">
+        Please enter a valid pincode
+    </div>
+</ng-template>
+   <ng-template #userName>
+    <div class="hide-err" *ngIf="formController.errors.userName;">
+        Enter a valid User name
+    </div>
+</ng-template>
+</div>
+
+    <div class="hide-err" *ngIf="isRequiredErr"> This field is mandatory</div>
+</div>

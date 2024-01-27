@@ -1,0 +1,153 @@
+<ion-content>
+  <div>
+    <h2>Register User</h2>
+    <form [formGroup]="addUserForm" (ngSubmit)="addUser()">
+      <div>
+
+
+        <label for="name">Name:</label>
+        <input formControlName="name" />
+        <app-form-errors
+          [submitted]="isFormSubmitted"
+          class="valid-msg"
+          *ngIf="addUserForm.controls['name'] && isFormSubmitted &&addUserForm.controls['name'].errors && (isFormSubmitted||addUserForm.controls['name'].touched)"
+          [formController]="addUserForm.controls['name']">
+        </app-form-errors>
+
+
+        <label for="dob">DOB:</label>
+        <input formControlName="dob" type="date"/>
+        <app-form-errors
+          [submitted]="isFormSubmitted"
+          class="valid-msg"
+          *ngIf="addUserForm.controls['dob'] && isFormSubmitted &&addUserForm.controls['dob'].errors && (isFormSubmitted||addUserForm.controls['dob'].touched)"
+          [formController]="addUserForm.controls['dob']">
+        </app-form-errors>
+
+
+        <label for="gender">GENDER:</label>
+        <div class="radio_btn">
+          <input value="male" id="male" type="radio" formControlName="gender"/>
+          <label for="male">Male</label>
+        </div>
+        <div class="radio_btn">
+          <input value="female" id="female" type="radio" formControlName="gender"/>
+          <label for="female">Female</label>
+        </div>
+        <app-form-errors
+          [submitted]="isFormSubmitted"
+          class="valid-msg"
+          *ngIf="addUserForm.controls['gender'] && isFormSubmitted &&addUserForm.controls['gender'].errors && (isFormSubmitted||addUserForm.controls['gender'].touched)"
+          [formController]="addUserForm.controls['gender']">
+      </app-form-errors>
+
+
+      <label for="state">State:</label>
+      <select  (change)="onStateChange($event)" formControlName="state" id="state" name="state">
+        <option *ngFor="let state of stateLs" [value]="state.id">{{state.state}}</option>
+      </select>
+      <app-form-errors
+        [submitted]="isFormSubmitted"
+        class="valid-msg"
+        *ngIf="addUserForm.controls['state'] && isFormSubmitted &&addUserForm.controls['state'].errors && (isFormSubmitted||addUserForm.controls['state'].touched)"
+        [formController]="addUserForm.controls['state']">
+      </app-form-errors>
+
+
+      <label for="district">District:</label>
+      <select [disabled]="!isEnableDistrict" (change)="onDistrictChange($event)" formControlName="district" id="district" name="district">
+        <option *ngFor="let district of districtLs" [value]="district.id">{{district.district}}</option>
+      </select>
+      <app-form-errors
+        [submitted]="isFormSubmitted"
+        class="valid-msg"
+        *ngIf="addUserForm.controls['district'] && isFormSubmitted &&addUserForm.controls['district'].errors && (isFormSubmitted||addUserForm.controls['district'].touched)"
+        [formController]="addUserForm.controls['district']">
+      </app-form-errors>
+
+
+      <label for="city">City:</label>
+      <select formControlName="city" id="city" name="city">
+        <option *ngFor="let city of cityLs" [value]="city.id">{{city.city}}</option>
+      </select>
+      <app-form-errors
+        [submitted]="isFormSubmitted"
+        class="valid-msg"
+        *ngIf="addUserForm.controls['city'] && isFormSubmitted &&addUserForm.controls['city'].errors && (isFormSubmitted||addUserForm.controls['city'].touched)"
+        [formController]="addUserForm.controls['city']">
+      </app-form-errors>
+
+
+        <label for="email">Email:</label>
+        <input formControlName="email" />
+        <app-form-errors
+          [submitted]="isFormSubmitted"
+          class="valid-msg"
+          *ngIf="addUserForm.controls['email'] && isFormSubmitted &&addUserForm.controls['email'].errors && (isFormSubmitted||addUserForm.controls['email'].touched)"
+          [formController]="addUserForm.controls['email']"
+      >
+      </app-form-errors>
+
+
+        <label for="mobile">Mobile No:</label>
+        <input formControlName="mobile" />
+        <app-form-errors
+          [submitted]="isFormSubmitted"
+          class="valid-msg"
+          *ngIf="addUserForm.controls['mobile'] && isFormSubmitted &&addUserForm.controls['mobile'].errors && (isFormSubmitted||addUserForm.controls['mobile'].touched)"
+          [formController]="addUserForm.controls['mobile']"
+      >
+      </app-form-errors>
+
+
+        <label for="pincode">Pincode:</label>
+        <input formControlName="pincode" />
+        <app-form-errors
+          [submitted]="isFormSubmitted"
+          class="valid-msg"
+          *ngIf="addUserForm.controls['pincode'] && isFormSubmitted &&addUserForm.controls['pincode'].errors && (isFormSubmitted||addUserForm.controls['pincode'].touched)"
+          [formController]="addUserForm.controls['pincode']"
+      >
+      </app-form-errors>
+
+
+      <label for="password">Password:</label>
+      <input  formControlName="password" />
+      <app-form-errors
+        [submitted]="isFormSubmitted"
+        class="valid-msg"
+        *ngIf="addUserForm.controls['password'] && isFormSubmitted && addUserForm.controls['password'].errors && (isFormSubmitted||addUserForm.controls['password'].touched)"
+        [formController]="addUserForm.controls['password']">
+    </app-form-errors>
+
+
+    <label for="hobbies">HOBBY:</label>
+    <div *ngFor="let hobby of hobbyLs" class="radio_btn">
+      <input [value]="hobby.id" type="checkbox" formControlName="hobbies"/>
+      <label [for]="hobby.id">{{hobby.hobby}}</label>
+    </div>
+    <app-form-errors
+      [submitted]="isFormSubmitted"
+      class="valid-msg"
+      *ngIf="addUserForm.controls['hobbies'] && isFormSubmitted &&addUserForm.controls['hobbies'].errors && (isFormSubmitted||addUserForm.controls['hobbies'].touched)"
+      [formController]="addUserForm.controls['hobbies']">
+    </app-form-errors>
+
+
+    <label for="hobbies">HOBBY:</label>
+    <div class="radio_btn">
+      <input type="file" formControlName="picture" accept="image/*"/>
+      <label for="picture">Image:</label>
+    </div>
+    <app-form-errors
+      [submitted]="isFormSubmitted"
+      class="valid-msg"
+      *ngIf="addUserForm.controls['picture'] && isFormSubmitted &&addUserForm.controls['picture'].errors && (isFormSubmitted||addUserForm.controls['picture'].touched)"
+      [formController]="addUserForm.controls['picture']">
+    </app-form-errors>
+
+      </div>
+      <button type="submit">ADD</button>
+    </form>
+  </div>
+</ion-content>
